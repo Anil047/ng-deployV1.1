@@ -1,0 +1,47 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    {{formViewModel.contentHeader}}
+    <small>{{formViewModel.contentHeaderDesc}}</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> {{formViewModel.breadcrumbs[0]}}</a></li>
+    <li><a href="#">{{formViewModel.breadcrumbs[1]}}</a></li>
+    <li class="active">{{formViewModel.breadcrumbs[2]}}</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Default box -->
+  <div class="box box-primary">
+    <div class="box-header with-border">
+
+      <div class="btn-group">
+        <button *ngIf="showNewBtn" type="button" [disabled]="!formViewModel.newBtn.state"
+                (click)="naviageToForm(formViewModel.newBtn.type,formViewModel.newBtn.name)"
+                [ngClass]="{'active' : formViewModel.newBtn.name === selectedMenu}" class="btn btn-default btn-flat">
+          <i class="fa fa-plus-circle"></i> {{formViewModel.newBtn.name}}
+        </button>
+        <button *ngIf="showDeleteBtn" type="button" (click)="onDeleteBtnClk($event)" [disabled]="!formViewModel.deleteBtn.state"
+                [ngClass]="{'active' : formViewModel.deleteBtn.name === selectedMenu}"
+                class="btn btn-default btn-flat"><i
+          class="fa fa-minus-circle"></i> {{formViewModel.deleteBtn.name}}
+        </button>
+        <button type="button" (click)="naviageToList('View All')"
+                [ngClass]="{'active' : formViewModel.listBtn.name === selectedMenu}" class="btn btn-default btn-flat">
+          <i
+            class="fa fa-list"></i> {{formViewModel.listBtn.name}}
+        </button>
+      </div>
+
+    </div>
+    <div class="box-body">
+      <router-outlet name="usermgmt-form"></router-outlet>
+    </div>
+
+  </div>
+  <!-- /.box -->
+
+</section>

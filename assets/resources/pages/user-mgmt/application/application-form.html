@@ -1,0 +1,67 @@
+<alert-bs [type]="formAttributeSettings.alertType" [dismissable]="formAttributeSettings.dismissable">
+  {{formAttributeSettings.msg}}
+</alert-bs>
+
+<form class="form-horizontal" [formGroup]="applicationForm" (ngSubmit)="onSubmit($event)">
+  <input formControlName="id" type="hidden"/>
+  <div class="box-body">
+    <div class="form-group">
+      <label for="application-code" class="col-sm-3 control-label">Code</label>
+      <div class="col-sm-6">
+        <input type="text" formControlName="code" class="form-control" id="application-code" placeholder="Code">
+        <div class="help-block with-errors"
+             *ngIf="applicationForm.controls.code.errors && applicationForm.controls.code.dirty">
+          <p class="text-danger" *ngIf="applicationForm.controls.code.errors.required">Code is a required field</p>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">
+      <label for="application-name" class="col-sm-3 control-label">Application Name</label>
+
+      <div class="col-sm-6">
+        <input type="text" formControlName="name" class="form-control" id="application-name" placeholder="Application">
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">
+      <label for="application-icon" class="col-sm-3 control-label">Icon</label>
+
+      <div class="col-sm-6">
+        <input type="text" formControlName="icon" class="form-control" id="application-icon" placeholder="Icon">
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">
+      <label for="application-version" class="col-sm-3 control-label">Version</label>
+
+      <div class="col-sm-6">
+        <input type="text" formControlName="version" class="form-control" id="application-version" placeholder="Version">
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">
+      <label for="application-description" class="col-sm-3 control-label">Description</label>
+
+      <div class="col-sm-6">
+        <textarea class="form-control" formControlName="description" rows="3" id="application-description" placeholder="Description of Application"></textarea>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+
+  </div>
+  <!-- /.box-body -->
+
+  <div class="box-footer">
+    <div class="col-sm-9">
+      <button type="submit" [disabled]="!applicationForm.valid" class="btn btn-primary btn-flat pull-right">
+        {{formAttributeSettings.buttonName}}
+      </button>
+      <button *ngIf="formAttributeSettings.buttonName==='Update'" (click)="onAddNewBtnClk()"
+              [disabled]="formAttributeSettings.buttonName==='Submit'" type="button"
+              class="btn btn-success btn-flat pull-right margin-r-5"><i class="fa fa-plus"></i> Add New
+      </button>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</form>

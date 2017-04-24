@@ -1,0 +1,107 @@
+<alert-bs [type]="formAttributeSettings.alertType" [dismissable]="formAttributeSettings.dismissable">
+  {{formAttributeSettings.msg}}
+</alert-bs>
+
+<form class="form-horizontal" [formGroup]="appFormForm" (ngSubmit)="onSubmit($event)">
+  <input formControlName="id" type="hidden"/>
+  <div class="box-body">
+    <div class="form-group">
+      <label for="appForm-code" class="col-sm-3 control-label">Code</label>
+      <div class="col-sm-6">
+        <input type="text" formControlName="code" class="form-control" id="appForm-code" placeholder="Code">
+        <div class="help-block with-errors"
+             *ngIf="appFormForm.controls.code.errors && appFormForm.controls.code.dirty">
+          <p class="text-danger" *ngIf="appFormForm.controls.code.errors.required">Code is a required field</p>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">
+      <label for="appForm-name" class="col-sm-3 control-label">Form Name</label>
+
+      <div class="col-sm-6">
+        <input type="text" formControlName="name" class="form-control" id="appForm-name" placeholder="Form">
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-3">
+        <div class="col-sm-2">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" formControlName="createAccess"> Create
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" formControlName="modifyAccess"> Modify
+            </label>
+          </div>
+
+        </div>
+        <div class="col-sm-2">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" formControlName="viewAccess"> View
+            </label>
+          </div>
+
+        </div>
+        <div class="col-sm-2">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" formControlName="deleteAccess"> Delete
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="appForm-create" class="col-sm-1 control-label">Create</label>-->
+      <!--<div class="col-sm-2">-->
+        <!--<input type="checkbox" formControlName="createAccess"  id="appForm-create">-->
+      <!--</div>-->
+      <!--<label for="appForm-modify" class="col-sm-1 control-label">Modify</label>-->
+      <!--<div class="col-sm-2">-->
+        <!--<input type="checkbox" formControlName="modifyAccess" id="appForm-modify">-->
+      <!--</div>-->
+      <!--<label for="appForm-view" class="col-sm-1 control-label">View</label>-->
+      <!--<div class="col-sm-2">-->
+        <!--<input type="checkbox" formControlName="viewAccess" id="appForm-view">-->
+      <!--</div>-->
+      <!--<label for="appForm-delete" class="col-sm-1 control-label">Delete</label>-->
+      <!--<div class="col-sm-2">-->
+        <!--<input type="checkbox" formControlName="deleteAccess" id="appForm-delete">-->
+      <!--</div>-->
+
+      <!--&lt;!&ndash;<div class="col-sm-3"></div>&ndash;&gt;-->
+    <!--</div>-->
+
+    <div class="form-group">
+      <label for="appForm-description" class="col-sm-3 control-label">Description</label>
+
+      <div class="col-sm-6">
+        <textarea class="form-control" formControlName="description" rows="3" id="appForm-description" placeholder="Description of Form"></textarea>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+
+  </div>
+  <!-- /.box-body -->
+
+  <div class="box-footer">
+    <div class="col-sm-9">
+      <button type="submit" [disabled]="!appFormForm.valid" class="btn btn-primary btn-flat pull-right">
+        {{formAttributeSettings.buttonName}}
+      </button>
+      <button *ngIf="formAttributeSettings.buttonName==='Update'" (click)="onAddNewBtnClk()"
+              [disabled]="formAttributeSettings.buttonName==='Submit'" type="button"
+              class="btn btn-success btn-flat pull-right margin-r-5"><i class="fa fa-plus"></i> Add New
+      </button>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</form>

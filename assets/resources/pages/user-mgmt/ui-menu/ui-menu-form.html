@@ -1,0 +1,191 @@
+<alert-bs [type]="formAttributeSettings.alertType" [dismissable]="formAttributeSettings.dismissable">
+  {{formAttributeSettings.msg}}
+</alert-bs>
+  <div class="row">
+    <div class="col-md-8">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <div class="col-sm-3">
+          <h3>UI Menu</h3>
+          </div>
+          <div class="col-sm-9 top-margin">
+          <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-4">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="menuSelect"> New Menu
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="menuSelect"> Existing Menu
+                    </label>
+                  </div>
+                </div>
+            </div>
+          </form>
+          </div>
+        </div>
+        <form class="form-horizontal" [formGroup]="uimenuForm" (ngSubmit)="onSubmit($event)">
+          <input formControlName="id" type="hidden"/>
+          <div class="box-body">
+            <div class="form-group">
+              <label for="uimenu-name" class="col-sm-3 control-label">Name</label>
+
+              <div class="col-sm-9">
+                <input type="text" formControlName="name" class="form-control" id="uimenu-name" placeholder="UI Menu">
+              </div>
+              <!--<div class="col-sm-3"></div>-->
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-3">
+                <div class="col-sm-9">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" formControlName="hasSubMenu"> Has Sub Menu
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="uimenu-application" class="col-sm-3 control-label">Application</label>
+
+              <div class="col-sm-9">
+                <select formControlName="applicationId" id="uimenu-application" class="form-control">
+                  <option selected="selected">option 1</option>
+                  <option>option 2</option>
+                  <option>option 3</option>
+                  <option>option 4</option>
+                  <option>option 5</option>
+                </select>
+              </div>
+              <!--<div class="col-sm-3"></div>-->
+            </div>
+            <div class="form-group">
+              <label for="uimenu-formId" class="col-sm-3 control-label">Form</label>
+
+              <div class="col-sm-9">
+                <select formControlName="formId" id="uimenu-formId" class="form-control select2">
+                  <option selected="selected">option 1</option>
+                  <option>option 2</option>
+                  <option>option 3</option>
+                  <option>option 4</option>
+                  <option>option 5</option>
+                </select>
+              </div>
+              <!--<div class="col-sm-3"></div>-->
+            </div>
+
+            <div class="form-group">
+              <label for="uimenu-numberOfChild" class="col-sm-3 control-label">Number Of Child</label>
+
+              <div class="col-sm-9">
+                <input type="text" formControlName="numberOfChild" class="form-control" id="uimenu-numberOfChild" placeholder="Number Of Child">
+              </div>
+              <!--<div class="col-sm-3"></div>-->
+            </div>
+            <div class="form-group">
+              <label for="uimenu-owncode" class="col-sm-3 control-label">Own Code</label>
+
+              <div class="col-sm-9">
+                <input type="text" formControlName="ownCode" class="form-control" id="uimenu-owncode" placeholder="Own Code">
+              </div>
+              <!--<div class="col-sm-3"></div>-->
+            </div>
+            <div class="form-group">
+              <label for="uimenu-parentcode" class="col-sm-3 control-label">Parent Code</label>
+
+              <div class="col-sm-9">
+                <input type="text" formControlName="parentCode" class="form-control" id="uimenu-parentcode" placeholder="Parent Code">
+              </div>
+              <!--<div class="col-sm-3"></div>-->
+            </div>
+            <div class="form-group">
+              <label for="uimenu-icon" class="col-sm-3 control-label">Icon</label>
+
+              <div class="col-sm-9">
+                <input type="text" formControlName="icon" class="form-control" id="uimenu-icon" placeholder="Icon">
+              </div>
+              <!--<div class="col-sm-3"></div>-->
+            </div>
+            <div class="form-group">
+              <label for="uimenu-urlOfMenu" class="col-sm-3 control-label">Url Of Menu</label>
+
+              <div class="col-sm-9">
+                <input type="text" formControlName="urlOfMenu" class="form-control" id="uimenu-urlOfMenu" placeholder="Url Of Menu">
+              </div>
+              <!--<div class="col-sm-3"></div>-->
+            </div>
+            <div class="form-group">
+              <label for="uimenu-description" class="col-sm-3 control-label">Description</label>
+
+              <div class="col-sm-9">
+                <textarea class="form-control" formControlName="description" rows="3" id="uimenu-description" placeholder="Description of UI Menu"></textarea>
+              </div>
+              <!--<div class="col-sm-3"></div>-->
+            </div>
+
+          </div>
+          <!-- /.box-body -->
+
+          <div class="box-footer">
+            <div class="col-sm-12">
+              <button type="submit" [disabled]="!uimenuForm.valid" class="btn btn-primary btn-flat pull-right">
+                {{formAttributeSettings.buttonName}}
+              </button>
+              <button *ngIf="formAttributeSettings.buttonName==='Update'" (click)="onAddNewBtnClk()"
+                      [disabled]="formAttributeSettings.buttonName==='Submit'" type="button"
+                      class="btn btn-success btn-flat pull-right margin-r-5"><i class="fa fa-plus"></i> Add New
+              </button>
+            </div>
+            <!--<div class="col-sm-3"></div>-->
+          </div>
+        </form>
+
+      </div>
+      <!-- /.box -->
+    </div>
+    <!--col end-->
+    <div class="col-md-4">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3>Sub-menu List</h3>
+          <form action="#" method="post">
+            <div class="input-group">
+              <input type="text" name="message" placeholder="Type Name of menu to search..." class="form-control">
+              <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat">Search</button>
+                          </span>
+            </div>
+          </form>
+        </div>
+        <div class="box-body vertical-scrollable">
+            <ul class="list-group">
+            <li class="list-group-item flat no-pad-top no-pad-bottom">
+              <div class="checkbox">
+                <label class="margin-r-5">
+                  <input type="checkbox" name="accessControl"> Sub Menu 1
+                </label>
+              </div>
+            </li>
+              <li class="list-group-item flat no-pad-top no-pad-bottom">
+                <div class="checkbox">
+                  <label class="margin-r-5">
+                    <input type="checkbox" name="accessControl"> Sub Menu 2
+                  </label>
+                </div>
+              </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+    <!--col end-->
+  </div>
+  <!--row end-->
